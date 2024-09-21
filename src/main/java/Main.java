@@ -95,5 +95,6 @@ public class Main { // open the class block
       // Now we wish them a nice day
       System.out.println("\n\nThank you for using Eric's BMI Calculator");
 
-    }
-}
+    } // close the main method block
+
+} // close the class block
