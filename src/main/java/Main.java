@@ -21,48 +21,50 @@ public class Main { // open the class block
   public static void main(String[] args) {  // open the main method block
 
       // Create the Scanner Object mon_input for grabbing the user input
-      Scanner scanner = new Scanner(System.in);
+      Scanner input = new Scanner(System.in);
 
-      // Prompt the user for their weight
-      System.out.print("Enter weight in pounds: ");
+      // Greet the user
+      System.out.println("Welcome to Eric's BMI Calculator. Let's start collecting data!");
 
-      // Store their weight in a variable named weightInPounds
-      double pounds = scanner.nextDouble();
+      // Prompt the user to enter weight in pounds
+      System.out.print("\nEnter weight in pounds: ");
+      double weight = input.nextDouble();
 
-      // Prompt the user for their height in feet
-      System.out.print("Enter feet: ");
+      // Prompt the user to enter height in feet
+      System.out.print("\nEnter your height in feet please : ");
+      int feet = input.nextInt();
 
-      // Store their foot height in a variable named feet        
-      int feet = scanner.nextInt();
+      // Prompt the user to enter the remaining inches
+      System.out.print("\nEnter the remaining inches please: ");
+      int inches = input.nextInt();
+  
 
-      // Prompt the user for their height in inches
-      System.out.print("Enter inches: ");
-
-      // Store their inch height in a variable named inches
-      int inches = scanner.nextInt();
-
+      // Constants used for BMI conversion
+      final double KILOGRAMS_PER_POUND = 0.45359237; // 1 pound is 0.45359237 kilograms
+      final double METERS_PER_INCH = 0.0254; // There are .0254 meters in an inch
+      final int INCHES_PER_FOOT = 12; // There are 12 inches in a foot
 
       // Calculate the total height in inches and weight in kilograms
 
       /* First step : We determine a person's BMI by first converting their height
         from feet and inches to meters and their weight from pounds to kilograms. */ 
-        
+    
       // First we calculate the total height in inches
-      double heightInInches = (feet * 12) + inches;
+      double heightInInches = (feet * INCHES_PER_FOOT) + inches;
       // We use feet * 12 because there are 12 inches in a foot
 
-      // Next we convert the height from inches to meters
-      double heightInMeters = heightInInches / 39.37; 
-      // We use heightInInches 39.37 because there are 39.37 inches in a meter
+      // Next we convert heightInInches to meters
+      double heightInMeters = heightInInches * METERS_PER_INCH;
+      // there are 0.0254 meters in an inch
 
-      // Convert weight from pounds to kilograms
-      double weightInKilograms = pounds / 2.2046; 
-      // We use pounds / 2.2046 because there are 2.2046 pounds in a kilogram
+      // Next we conver from pounds to kilograms
+      double weightInKilograms = weight * KILOGRAMS_PER_POUND;
+      // there are 0.45359237 kilograms in a pound
 
-      // Calculate BMI
+      // Finally we calculate the BMI
       double bmi = weightInKilograms / (heightInMeters * heightInMeters);
-      /* To calculate BMI, a person's weight in kilograms is divided 
-          by the square of their height in meters. */
+      /* bmi is calculated by 
+         weight in kilograms / (height in meters * height in meters) */
 
       // Create a placeholder for the weight category
       String bmi_listing;
@@ -81,8 +83,17 @@ public class Main { // open the class block
       // According to the WHO, a BMI of 30 or higher is considered obese. 
       else { bmi_listing = "Obese"; }
 
-        // Display results
-        System.out.println("BMI is: " + bmi);
-        System.out.println("Weight category: " + bmi_listing);
+      // Display the calculations based on input
+        
+      // First we print out their BMI
+      System.out.println("\nThanks, here is your data.");
+      System.out.println("\nYour BMI is " + bmi);
+
+      // Next we print our their weight category
+      System.out.println("Weight category: " + bmi_listing);
+
+      // Now we wish them a nice day
+      System.out.println("\n\nThank you for using Eric's BMI Calculator");
+
     }
 }
